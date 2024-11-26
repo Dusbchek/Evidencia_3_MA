@@ -14,7 +14,13 @@ return new class extends Migration
         Schema::create('pet_types', function (Blueprint $table) {
             $table->id(); // id (BigInteger, auto-incremental)
             $table->string('name'); // name (Varchar)
+            $table->integer('age'); // age (Integer)
+            $table->unsignedBigInteger('customer_id'); // customer_id (BigInteger, unsigned)
             $table->timestamps(); // Campos created_at y updated_at
+        
+            // Definir la llave foránea
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+        
         });
 
     }
